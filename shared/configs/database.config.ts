@@ -21,8 +21,8 @@ export default {
     },
     database: 'teamTodoApp',
     username: 'postgres',
-    password: '1234',
-    models: ['database/entities/*{.js,.ts}'],
+    password: 'asdqwe1234',
+    entities: ['database/entities/*{.js,.ts}'],
     sync: {
         force: false,
         alter: true,

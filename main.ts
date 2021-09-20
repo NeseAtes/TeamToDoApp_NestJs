@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 import helmet from 'fastify-helmet';
 import multipart from 'fastify-multipart';
 
@@ -34,8 +36,14 @@ import { AppModule } from 'app.module';
     });
 
   
-    await app.listen(envConfig.port, '0.0.0.0' );
-    // await app.listen(envConfig.port, envConfig.productionModeEnabled ? '0.0.0.0' : '127.0.0.1');
-  
+    await app.listen(envConfig.port, '127.0.0.1' );
+    //await app.listen(envConfig.port, envConfig.productionModeEnabled ? '0.0.0.0' : '127.0.0.1');
+    if (envConfig.productionModeEnabled) {
+      console.log(
+        `${chalk.blue.bold(`[PID: ${process.pid}]`)} ${chalk.green.bold(
+          '✓',
+        )} Server is running on port ${chalk.white.bold(envConfig.port)} in production mode`,
+      );
+    }
     
   })();

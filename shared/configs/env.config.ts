@@ -3,7 +3,7 @@ import * as envLoader from 'load-env-var';
 
 import { join } from 'path';
 
-const basePath = process.env.RUN_IN_SNAPSHOT === 'true' ? '/snapshot/ephesus-backend-server' : process.cwd();
+const basePath = process.env.RUN_IN_SNAPSHOT === 'true' ? '/snapshot/localhost' : process.cwd();
 
 dotenv.config({
   path: process.env.NODE_ENV === 'production' ? join(basePath, '.env') : join(basePath, '.dev.env'),

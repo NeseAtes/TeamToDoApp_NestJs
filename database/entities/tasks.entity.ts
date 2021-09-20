@@ -2,9 +2,10 @@ import { Sequelize } from 'sequelize';
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } from 'sequelize-typescript';
 import { User } from './user.entity';
 import { Teams } from './teams.entity';
+import { TeamOfUser } from './teams-of-user';
 
 
-@Table
+@Table({})
 export class Tasks extends Model<Tasks> {
   @PrimaryKey
   @Column({ type: DataType.UUID, defaultValue: Sequelize.literal('uuid_generate_v4()') })
@@ -17,22 +18,30 @@ export class Tasks extends Model<Tasks> {
   checked: boolean;
 
 
-  @ForeignKey(() => Teams)
+  
+  /*@ForeignKey(() => Teams)
   @Column({ type: DataType.UUID, allowNull: false })
   team_id: string;
+
+  @BelongsTo(() => Teams, 'team_id')
+  team: Teams;
 
   @ForeignKey(() => Teams)
   @Column({ type: DataType.UUID, allowNull: false })
   uye_id: string;
 
-  @ForeignKey(() => User)
-  @Column({ type: DataType.UUID, allowNull: false })
-  user_id: string;
+  @BelongsTo(() => Teams, 'uye_id')
+  uye: Tasks;*/
 
-  @HasMany(() => User)
-  users: User[];
+  @ForeignKey(() => TeamOfUser)
+  @Column({ type: DataType.UUID, allowNull: true})
+  teamofuserid: string;
 
-  @HasMany(() => Teams)
-  teams: User[];
+  @BelongsTo(() => TeamOfUser, 'teamofuserid')
+  teamofuser: TeamOfUser;
+ 
+  /*@HasMany(() => Teams)
+  teams: Teams[];*/
 
+  
 }
